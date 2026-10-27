@@ -136,3 +136,25 @@
   document.querySelectorAll('.acc').forEach(b=>b.addEventListener('click',()=>queueMicrotask(sync)));addEventListener('resize',sync);sync();
   setTimeout(()=>{if(!root.classList.contains('motion-started'))root.classList.add('motion-fallback');},5000);
 })();
+
+/* header gets a frosted bar once the page has scrolled past the first screen of photo
+   (carried over from the base system; the CSS for .hdr--solid lives in styrkur.css) */
+(() => {
+  const hdr = document.getElementById('hdr'); if (!hdr) return;
+  const hasHero = !!document.querySelector('.hero, .phero');
+  let ticking = false;
+  const upd = () => { ticking = false; hdr.classList.toggle('hdr--solid', scrollY > (hasHero ? innerHeight * .85 : 40)); };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
+  upd();
+})();
+
+/* cross-page anchors (thjonusta.html#ms, stundaskra.html#...): re-apply the jump once layout has settled
+   (fonts, the rendered timetable and the loader can all shift it after Safari's early jump) */
+addEventListener('load', () => {
+  if (!location.hash || location.hash.length < 2) return;
+  let t = null; try { t = document.querySelector(decodeURIComponent(location.hash)); } catch (e) { return; }
+  if (!t) return;
+  let n = 0;
+  const go = () => { if (document.documentElement.classList.contains('is-loading') && n++ < 20) return setTimeout(go, 200); t.scrollIntoView({ block: 'start' }); }; // the loader locks scrolling until it is removed
+  (window.styrkurGate || Promise.resolve()).then(() => setTimeout(go, 300));
+});
