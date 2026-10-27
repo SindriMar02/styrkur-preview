@@ -399,3 +399,22 @@ html:not(.motion-started) .hero .li{transform:none;clip-path:none}
 /* iOS Safari did not blur behind the bar, so a translucent bar let page text show behind the logo: solid instead */
 /* links inside running text carry their underline on touch too (the hover-only line gave no cue on phones) */
 .st-privacy .ul::after,.bk__sticky .ul::after,.split__body .ul::after,.lwc__body .ul::after{transform:scaleX(1)}
+
+/* Up-arrow: the base floated it absolutely over the footer's bottom edge, and Styrkur's longer contact column
+   (gym hours) ran underneath it. It now takes the empty "s" cell under the contact block at every width.
+   position:relative (not static) keeps it the containing block for its two animated arrow svgs. */
+.ftr__top,.ftr__top:where(*){position:relative;left:auto;right:auto;bottom:auto;grid-area:s;justify-self:start;align-self:end;margin-top:4rem}
+@media (max-width:1023px){.ftr__top{left:auto;right:auto;bottom:auto}}
+
+/* Phone footer: the link groups are accordions, so they carry the menu's +/− marker and sit as one tidy list
+   instead of three headings floating in large gaps; the contact lines stack instead of running together. */
+@media (max-width:519px){
+  .ftr__nav{row-gap:0}
+  .ftr__nav .ftr__t{margin-bottom:0}
+  .ftr__t .acc{position:relative;min-height:5.6rem;align-items:center;padding-right:4rem}
+  .ftr__t .acc::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font:400 2.2rem/1 var(--sans);color:var(--stone)}
+  .ftr__t .acc[aria-expanded="true"]::after{content:"−"}
+  .ftr__nav .ftr__list>li:first-child{margin-top:1.6rem}
+  .ftr__nav .ftr__list>li:last-child{margin-bottom:1.6rem}
+}
+.ftr__contact{flex-direction:column;align-items:flex-start;row-gap:1.2rem}
