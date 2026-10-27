@@ -1,0 +1,19 @@
+/* Styrkur brand layer. Original type and neutral system tokens retained. */
+@font-face{font-family:"Sans";src:url("../fonts/hanken/hanken-grotesk-v12-latin_latin-ext-regular.woff2") format("woff2");font-weight:300 450;font-display:swap}
+@font-face{font-family:"Sans";src:url("../fonts/hanken/hanken-grotesk-v12-latin_latin-ext-500.woff2") format("woff2");font-weight:451 700;font-display:swap}
+@font-face{font-family:"Mono";src:url("../fonts/martian/martian-mono-v6-latin_latin-ext-100.woff2") format("woff2");font-weight:100 300;font-display:swap}
+@font-face{font-family:"Mono";src:url("../fonts/martian/martian-mono-v6-latin_latin-ext-500.woff2") format("woff2");font-weight:301 700;font-display:swap}
+:root{
+  /* colour roles */
+  --ink:#1e2226;      /* primary text, dark sections, menu panel          ref #1e2226 */
+  --paper:#f8f8f9;    /* page background, text on dark                    ref #f8f8f9 */
+  --signal:#0a778c;   /* median logo pixel; 4.91:1 on paper, 5.21:1 with white */
+  --stone:#caccc4;    /* button fill, tracks, text on dark                 ref #caccc4 */
+  --mute:#707275;     /* body copy on light: AA set from the bundle, 4.55:1 ref #787a7d */
+  --mute-2:#717273;   /* tags, dates, table rows: AA 4.54:1                ref #a5a7a8 */
+  --line-dark:#696c6e;/* outline button on dark, captions: 3.03:1         ref #4b4e51 */
+  --media:#c9ccc6;    /* media placeholder before load                     ref #bbb */
+  --sans:"Sans",system-ui,sans-serif;
+  --mono:"Mono",ui-monospace,monospace;
+}
+.tmd__copy,.ftr__t,.nav__title{color:#86888b}  /* mute on ink: 4.50:1 */
