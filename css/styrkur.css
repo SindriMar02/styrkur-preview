@@ -418,3 +418,26 @@ html:not(.motion-started) .hero .li{transform:none;clip-path:none}
   .ftr__nav .ftr__list>li:last-child{margin-bottom:1.6rem}
 }
 .ftr__contact{flex-direction:column;align-items:flex-start;row-gap:1.2rem}
+
+/* QA pass 2026-10-27 (Codex critique, checked against the captures) */
+/* Inner-page hero photo: the base parks it 40vh down and lets a scroll-driven animation lift it. With reduced motion,
+   or in a browser without scroll timelines, nothing lifts it and a dark band shows above the photo. */
+@media (prefers-reduced-motion:reduce){.phero__bg,.phero__bg .ph{top:0!important;height:100%!important}}
+@supports not (animation-timeline:scroll()){.phero__bg,.phero__bg .ph{top:0!important;height:100%!important}}
+/* Footer dimming overlay: its fade-out is switched off on phones and with reduced motion, which left the footer dimmed */
+@media (max-width:519px),(prefers-reduced-motion:reduce){.ftr::before{display:none}}
+/* Touch targets: buttons and timetable names reach 44px on touch screens */
+@media (pointer:coarse){
+  .btn{height:max(44px,3.7rem)}
+  .btn__seg--icon,.ftr__top .btn__seg{min-width:44px}
+  .ftr__top{height:44px}
+  .st-session a{display:inline-flex;align-items:center;min-height:44px}
+  .ftr__contact>a,.ftr__bot a{display:inline-flex;align-items:center;min-height:44px}
+}
+/* A button that follows an intro paragraph gets air instead of touching it */
+.lwc__body>.btn{margin-top:2.4rem}
+body[data-page="stundaskra"] main>section:last-child{padding-bottom:8rem}
+/* Service names break only at the soft hyphens in the markup, never mid-word */
+.cat__n{overflow-wrap:normal;word-break:normal;hyphens:manual}
+/* Staff without a photo: initials on the stone ground instead of a stock silhouette */
+.mem__img--ini{display:flex;align-items:center;justify-content:center;background:#e4e6e2;color:var(--signal)}
