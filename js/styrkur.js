@@ -66,7 +66,10 @@
     }
     reduced.addEventListener('change',()=>{if(reduced.matches){exitAnimation?.cancel();exitLayer?.remove();layoutAnimation?.cancel();}});
     checks.forEach(c=>c.addEventListener('change',()=>render()));filter.addEventListener('change',()=>render());
-    root.querySelector('[data-reset]').addEventListener('click',()=>{checks.forEach(c=>c.checked=true);filter.value='all';render();});render(false);
+    root.querySelector('[data-reset]').addEventListener('click',()=>{checks.forEach(c=>c.checked=true);filter.value='all';render();});
+    // a group page link (stundaskra.html?hopur=parkinson#vikan) opens the timetable already filtered to that group
+    const asked=new URLSearchParams(location.search).get('hopur');if(asked&&[...filter.options].some(o=>o.value===asked))filter.value=asked;
+    render(false);
   });
   // Native details keep their content mounted through collapse. Reversals start at current height.
   document.querySelectorAll('.prog__i').forEach(details => {
