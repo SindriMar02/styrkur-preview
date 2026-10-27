@@ -102,6 +102,9 @@
     progress.forEach((el,i)=>{if(i===n)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current');});
     back.hidden=n===0;next.hidden=n===2;send.hidden=n!==2;
     steps[n].querySelector('legend').focus({preventScroll:true});arrive(steps[n]);
+    // a shorter next step can leave its heading under the fixed header: bring the form's top back into view
+    const hdrH=(document.getElementById('hdr')?.querySelector('.hdr__row')||document.body).getBoundingClientRect().bottom, top=form.getBoundingClientRect().top;
+    if(top<hdrH+16)scrollTo({top:scrollY+top-hdrH-24,behavior:reduced.matches?'auto':'smooth'});
     if(!reduced.matches)stepLayout=form.animate([{height:oldHeight+'px'},{height:form.getBoundingClientRect().height+'px'}],{duration:400,easing:'cubic-bezier(.77,0,.18,1)'});
   }
   next.addEventListener('click',()=>show(step+1));back.addEventListener('click',()=>show(Math.max(0,step-1)));
