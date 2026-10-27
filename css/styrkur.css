@@ -264,9 +264,9 @@ html.styrkur-settle .hero__slide.is-active .ph{transform:none;transition:transfo
 
 /* header over page content: transparent over photos (reference), a frosted bar once it sits over text */
 .hdr__row{transition:transform 1.2s var(--ease-out),background-color .4s ease,-webkit-backdrop-filter .4s ease,backdrop-filter .4s ease}
-.hdr.hdr--solid:not(.hdr--offwhite):not(.hdr--light) .hdr__row{background:rgba(248,248,249,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.hdr.hdr--solid.hdr--light .hdr__row{background:rgba(30,34,38,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.hdr.hdr--solid.hdr--grey .hdr__row{background:rgba(236,238,235,.97)}
+.hdr.hdr--solid:not(.hdr--offwhite):not(.hdr--light) .hdr__row{background:#f8f8f9;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.hdr.hdr--solid.hdr--light .hdr__row{background:#1e2226;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.hdr.hdr--solid.hdr--grey .hdr__row{background:#eceeeb}
 @media (max-width:519px){.hdr.hdr--solid .hdr__row{height:7.6rem}}
 /* anchor jumps land below the header */
 section[id],[id="medferdir"],[id="verd"],[id="verdskra"],[id="ibudir"]{scroll-margin-top:calc(var(--header-h) + 1rem)}
@@ -396,6 +396,6 @@ html:not(.motion-started) .hero .li{transform:none;clip-path:none}
 /* Phone portrait crop of the hands photo: keep the fingers and nails in frame, not the bare knuckle */
 @media (max-width:767px){.hero__slide[data-i="0"] .hero__media img[data-crop=hands]{object-position:72% 50%}}
 
-/* iOS Safari did not blur behind the bar, so .88 let page text show behind the logo: near-opaque instead */
+/* iOS Safari did not blur behind the bar, so a translucent bar let page text show behind the logo: solid instead */
 /* links inside running text carry their underline on touch too (the hover-only line gave no cue on phones) */
 .st-privacy .ul::after,.bk__sticky .ul::after,.split__body .ul::after,.lwc__body .ul::after{transform:scaleX(1)}
